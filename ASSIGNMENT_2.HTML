@@ -1,0 +1,111 @@
+<html>
+    <head>
+      <meta charset="UTF-8">
+        <title>CSC1401 Assignment 2 Personal Gpa Calculator</title>
+           <script>
+           // FUCNTIONS
+
+		   function getSum(p, c) {
+				return p + c; 
+			 }
+  			function getAvg(scoreArray) {
+    			return (scoreArray.reduce(getSum) / scoreArray.length);
+			}
+
+			function prompt_for_class(reenter) {
+
+				if (reenter == 1) {
+					strClass = prompt('Please enter a correct course code');
+				} else {
+					strClass = prompt('Please enter a course code');
+				}
+				
+				studClassString = strClass.substring(0,3);
+				studClassNum = strClass.substring(3,7);	
+				return {String: studClassString, Num: studClassNum}
+			}
+		
+		   //Setup constants and variables used
+			
+			const COURSEGPA = [1.5,3,4,5,6,7];
+			const SPEDS = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
+           
+			var classArray = [];
+			var studentScore = (0);
+			var scoreArray = [];
+			//var studentScore = new Array();
+			//var studClassString = '';
+			//var studClassNum = '';
+			var match = false;
+			var total = 1;
+			var moreCourse = true;
+			var maxScore = 0;
+			var minScore = 0;
+			var maxScoreCourse = '';
+			var minScoreCourse = '';
+      
+			document.writeln('<table border="3">');
+			document.writeln('<td>','Course Code', '</td>');
+			document.writeln('<td>','Course Score' ,'</td>');
+			document.writeln('</tr>');
+					
+			while (moreCourse) {	
+			//		strClass = prompt('Please enter a course code');
+			//		studClassString = strClass.substring(0,3);
+			//		studClassNum = strClass.substring(3,7);
+					//parseInt(studClassNum);
+					
+				studClass = prompt_for_class(0)
+	
+				while (!isNaN (studClass.String)|| studClass.String != studClass.String.toUpperCase() ||
+					isNaN (studClass.Num) || (studClass.String +studClass.Num).length != 7 || SPEDS.test(strClass) || 
+					studClass.Num < 1000) {
+					//	strClass = prompt('Please re-enter your course code, correctly')
+					//	studClassString = strClass.substring(0,3);    
+					//	studClassNum = strClass.substring(3,7);
+						studClass = prompt_for_class(1)
+					}
+					
+				classArray.push(studClass.String + studClass.Num)	
+
+				studentScore = parseFloat(prompt('Please enter your course score'));
+				
+				while (COURSEGPA.indexOf(studentScore) == -1) {
+					studentScore = parseFloat(prompt('Please enter your course score, correctly'));
+				}
+					
+				//parseFloat(studentScore);
+				scoreArray.push(parseFloat(studentScore));
+		
+				alert(scoreArray);
+		
+				document.writeln('</tr>');
+				document.writeln('<td>', (studClass.String +studClass.Num) ,'</td>');
+				document.writeln('<td>', studentScore ,'</td>');
+
+				moreCourse = confirm("Would you like to add another course?");
+			}
+						
+			maxScore = Math.max(...scoreArray);
+			minScore = Math.min(...scoreArray);
+			maxScoreCourse = classArray[scoreArray.indexOf(maxScore)];
+			minScoreCourse = classArray[scoreArray.indexOf(minScore)];
+     		
+			 console.log(maxScore);
+			 console.log(minScore);
+			 console.log(minScoreCourse);
+			 console.log(minScoreCourse);
+alert(getAvg(scoreArray))
+    
+        
+        
+        
+           </script>
+    </head>
+
+      <body>
+      
+      </body>
+</html>
+
+
