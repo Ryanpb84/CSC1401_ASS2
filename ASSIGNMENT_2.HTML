@@ -4,29 +4,6 @@
         <title>CSC1401 Assignment 2 Personal Gpa Calculator</title>
            <script>
            
-		   // Setup functions used in the code
-
-		   function getSum(a, b) {
-				return a + b; 
-			 }
-  			function getAvg(scoreArray) {
-    			return (scoreArray.reduce(getSum) / scoreArray.length);
-			}
-
-			function prompt_for_class(reenter) {
-
-				if (reenter == 1) {
-					strClass = prompt('Please enter a correct course code');
-				} else {
-					strClass = prompt('Please enter a course code');
-				}
-				
-				studClassString = strClass.substring(0,3);
-				studClassNum = strClass.substring(3,7);	
-				return {String: studClassString, Num: studClassNum}
-			}
-			
-
 		   //Setup constants and variables used in the code
 			
 			const COURSEGPA = [1.5,3,4,5,6,7];
@@ -54,7 +31,7 @@
 
 			while (moreCourse) {	
 				studClass = prompt_for_class(0)
-
+				
 
 
 				while (!isNaN (studClass.String)|| studClass.String != studClass.String.toUpperCase() ||
@@ -84,7 +61,10 @@
 
 				moreCourse = confirm("Would you like to add another course?");
 			}
+			
+			document.writeln('</table>');
 
+			
 			//calculate the highest scoring course and lowest scoring course
 
 			maxScore = Math.max(...scoreArray);
@@ -101,6 +81,33 @@
 			document.writeln('<li>', "Course with the highest grade value:", " " , maxScoreCourse, '</li>');
 			document.writeln('<li>', "Course with the lowest grade value:" , " " , minScoreCourse, '</li>');	
 			document.writeln('<li>', "Grade point average (GPA) is", " " , gpaTwoDecimal , '</li>');
+
+			//Setup functions used in the code
+			
+			function getSum(a, b) {
+				return a + b; 
+			 }
+  			function getAvg(scoreArray) {
+    			return (scoreArray.reduce(getSum) / scoreArray.length);
+			}
+
+			function prompt_for_class(reenter) {
+
+				if (reenter == 1) {
+					strClass = prompt('Please enter a correct course code');
+				} else {
+					strClass = prompt('Please enter a course code');
+				}
+				
+			
+				studClassString = strClass.substring(0,3);
+				studClassNum = strClass.substring(3,7);	
+				return {String: studClassString, Num: studClassNum}
+			}
+
+
+
+
 
 
            </script>
